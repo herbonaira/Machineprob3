@@ -1,0 +1,25 @@
+function mp3final
+%set of matrix
+set = input('Please input matrix in this form [x;y] with n x 2 array: ')
+a = set(:,1)
+b = set(:,2)
+
+error=zeros(1,length(set)-1);
+
+if length(set)<=10
+    m = length(set)-1;
+else
+    m =10
+end 
+
+for n=1:m
+pf=polyfit(a,b,n);
+pv=polyval(pf,a);
+error(n)=norm(b-pv);
+end
+
+[~,I] = min(error);
+coeff = polyfit(a,b,I)
+
+disp(coeff)
+end
